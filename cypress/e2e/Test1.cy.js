@@ -9,19 +9,19 @@
 //   })
 // })
 
-describe('My First Test', () => {
-  it('Visits the Kitchen Sink', () => {
-    cy.visit('https://example.cypress.io')
-  })
-})
+// describe('My First Test', () => {
+//   it('Visits the Kitchen Sink', () => {
+//     cy.visit('https://example.cypress.io')
+//   })
+// })
 
-describe('My First Test', () => {
-  it('clicks the link "type"', () => {
-    cy.visit('https://example.cypress.io')
+// describe('My First Test', () => {
+//   it('clicks the link "type"', () => {
+//     cy.visit('https://example.cypress.io')
 
-    cy.contains('type').click()
-  })
-})
+//     cy.contains('type').click()
+//   })
+// })
 
 describe('My First Test', () => {
   it('Gets, types and asserts', () => {
