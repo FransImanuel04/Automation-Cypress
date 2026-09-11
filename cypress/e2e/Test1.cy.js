@@ -1,42 +1,31 @@
 ///<reference types="cypress"/>
 
-// describe('template spec', () => {
-//   it('passes', () => {
-//     cy.visit('https://my.umn.ac.id/')
-//     cy.get('[name="userid"]').type('frans.imanuel1@student.umn.ac.id{enter}')
-//     cy.get('[name="pwd"]').type('Namasayafrans1312{enter}')
-//     //cy.get('[name="q"]').type('Indonesia{enter}')
-//   })
-// })
+describe('Login feature', () => {
+  beforeEach(() => {
+    cy.visit('https://the-internet.herokuapp.com/login')
+  })
 
-// describe('My First Test', () => {
-//   it('Visits the Kitchen Sink', () => {
-//     cy.visit('https://example.cypress.io')
-//   })
-// })
+  it('successfully logs in with valid credentials', () => {
+    cy.get('#username').clear().type('tomsmith')
+    cy.get('#password').clear().type('SuperSecretPassword!')
+    cy.get('button[type="submit"]').click()
 
-// describe('My First Test', () => {
-//   it('clicks the link "type"', () => {
-//     cy.visit('https://example.cypress.io')
+    cy.url().should('include', '/secure')
+    cy.contains('You logged into a secure area!').should('be.visible')
+    cy.contains('Logout').should('be.visible')
+  })
 
-//     cy.contains('type').click()
-//   })
-// })
+  it('shows an error message for invalid credentials', () => {
+    cy.get('#username').clear().type('wronguser')
+    cy.get('#password').clear().type('wrongpass')
+    cy.get('button[type="submit"]').click()
 
-describe('My First Test', () => {
-  it('Gets, types and asserts', () => {
-    cy.visit('https://example.cypress.io')
-
-    cy.contains('type').click()
-
-    // Should be on a new URL which
-    // includes '/commands/actions'
-    cy.url().should('include', '/commands/actions')
-
-    // Get an input, type into it
-    cy.get('.action-email').type('fake@email.com')
-
-    //  Verify that the value has been updated
-    cy.get('.action-email').should('have.value', 'fake@email.com')
+    cy.contains('Your username is invalid!').should('be.visible')
+    cy.url().should('include', '/login')
   })
 })
+
+// Catatan:
+// 1. Ganti selector dan credential sesuai halaman login aplikasi Anda.
+// 2. Jika halaman login tidak sama, sesuaikan selector seperti #username, #password, dan tombol submit.
+// 3. Contoh ini bisa dipakai sebagai template untuk aplikasi login nyata.

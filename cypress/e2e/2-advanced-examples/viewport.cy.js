@@ -26,6 +26,8 @@ context('Viewport', () => {
 
     cy.viewport('macbook-15')
     cy.wait(200)
+    cy.viewport('macbook-19')
+    cy.wait(200)
     cy.viewport('macbook-13')
     cy.wait(200)
     cy.viewport('macbook-11')
